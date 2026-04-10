@@ -292,6 +292,7 @@
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://oceanvacationsmb.guestybookings.com/en">Book direct now</a>
           <a class="btn btn-secondary" href="#featured">Explore featured stays</a>
+          <a class="btn btn-secondary" href="#revenue-tool">Get revenue estimate</a>
         </div>
         <div class="stats">
           <div class="stat"><strong>36+</strong><span>Premium homes</span></div>
@@ -304,14 +305,11 @@
         <div class="booking-top">
           <div class="badge" style="background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.18); color:white; box-shadow:none;">Guesty connected</div>
           <h3>Search availability and drive direct bookings</h3>
-          <form id="heroBookingForm" class="booking-fields">
-            <input id="heroDestination" class="booking-field" style="border:none; width:100%;" placeholder="Destination" />
-            <input id="heroCheckin" class="booking-field" style="border:none; width:100%;" type="date" placeholder="Check in" />
-            <input id="heroCheckout" class="booking-field" style="border:none; width:100%;" type="date" placeholder="Check out" />
-            <input id="heroGuests" class="booking-field" style="border:none; width:100%;" type="number" min="1" placeholder="Guests" />
-            <button class="btn" style="width:100%; margin-top:16px; background:white; color:#0f172a; border:none;" type="submit">Search booking engine</button>
-          </form>
-          <div class="helper-note" style="margin-top:10px; color:#e0f2fe;">The search button opens your live Guesty booking engine. The embedded section below lets guests browse without leaving the page.</div>
+          <div id="search-widget_IO312PWQ"></div>
+          <script>
+            !function(e,t,a,n,c,r){function s(t){e.console.log("[Guesty Embedded Widget]:",t)}var i,d,l,o,y,m,g,h,p,u;n&&(i=n,d=t.getElementsByTagName("head")[0],(l=t.createElement("link")).rel="stylesheet",l.type="text/css",l.href=i,l.media="all",d.appendChild(l)),o=function(){try{e[a].create(r).catch(function(e){s(e.message)})}catch(e){s(e.message)}},h=!1,y=c,m=function(){h||this.readyState&&"complete"!=this.readyState||(h=!0,o())},(g=t.createElement("script")).type="text/javascript",g.src=y,g.async="true",g.onload=g.onreadystatechange=m,p=g,(u=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,u)}(window,document,"GuestySearchBarWidget","https://s3.amazonaws.com/guesty-frontend-production/search-bar-production.css","https://s3.amazonaws.com/guesty-frontend-production/search-bar-production.js",{"siteUrl":"oceanvacationsmb.guestybookings.com","color":"#206CFF"});
+          </script>
+          <div class="helper-note" style="margin-top:12px; color:#e0f2fe;">Guests can search availability directly from your page using the live Guesty search widget.</div>
         </div>
         <div class="mini-panels">
           <div class="mini"><small>Guests</small>Direct savings</div>
@@ -449,6 +447,7 @@
         </div>
       </div>
       <div class="owners-form">
+        <a class="btn" style="width:100%; background:white; color:#0f172a; margin-bottom:14px;" href="#revenue-tool">Get revenue estimate</a>
         <h3>Request a management consultation</h3>
         <p>Built to capture owner leads with a stronger luxury look and clearer value proposition.</p>
         <div class="grid" style="margin-top:20px; gap:12px;">
@@ -596,14 +595,6 @@
       editableTargets.forEach(el => localStorage.removeItem(el.dataset.editKey));
       location.reload();
     });
-
-    const heroBookingForm = document.getElementById('heroBookingForm');
-    if (heroBookingForm) {
-      heroBookingForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        window.open('https://oceanvacationsmb.guestybookings.com/en', '_blank');
-      });
-    }
 
     const addressInput = document.getElementById('address');
     const addressSuggestions = document.getElementById('addressSuggestions');
