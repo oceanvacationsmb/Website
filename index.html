@@ -1,148 +1,545 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ocean Vacations | Myrtle Beach Direct Bookings & Management</title>
-    <meta name="description" content="Book your Myrtle Beach stay directly and save. Professional property management for high-end coastal vacation rentals.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Open Sans', sans-serif; }
-        h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
-        .beachy-gradient { background: linear-gradient(135deg, #0077be 0%, #98FFED 100%); }
-        .coral-btn { background-color: #FF7F50; transition: all 0.3s ease; }
-        .coral-btn:hover { background-color: #ff632d; transform: scale(1.05); }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ocean Vacations | Vacation Rentals & Property Management</title>
+  <meta name="description" content="Direct-book vacation rentals and property management across Myrtle Beach, North Myrtle Beach, Surfside Beach, and Garden City." />
+  <style>
+    :root {
+      --bg1: #fff7ed;
+      --bg2: #f8fbff;
+      --white: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: rgba(255,255,255,.45);
+      --card: rgba(255,255,255,.84);
+      --shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+      --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --grad-main: linear-gradient(135deg, #06b6d4, #3b82f6, #6366f1);
+      --grad-warm: linear-gradient(135deg, #fb923c, #f97316, #ec4899);
+      --grad-cool: linear-gradient(135deg, #38bdf8, #0ea5e9, #0f766e);
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 20px;
+      --max: 1220px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, var(--bg1) 0%, #ffffff 18%, var(--bg2) 60%, #ffffff 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    .section { padding: 72px 0; }
+    .grid { display: grid; gap: 24px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 14px 24px; border-radius: 999px; font-weight: 700;
+      transition: .2s ease; cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--grad-main); color: white; box-shadow: 0 16px 36px rgba(56,189,248,.35); }
+    .btn-secondary { background: rgba(255,255,255,.9); border: 1px solid #e2e8f0; color: #334155; }
+    .badge {
+      display: inline-flex; padding: 8px 14px; border-radius: 999px;
+      background: rgba(255,255,255,.82); border: 1px solid rgba(255,255,255,.6);
+      font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #0369a1;
+      box-shadow: var(--shadow-soft);
+    }
+    .eyebrow {
+      font-size: 12px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: #0369a1;
+    }
+    .card {
+      background: var(--card); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,.65);
+      border-radius: var(--radius-xl); box-shadow: var(--shadow);
+    }
+    .soft-card {
+      background: white; border: 1px solid #eef2f7; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft);
+    }
+
+    header {
+      position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.75); backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.55);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 0;
+    }
+    .brand-title { font-size: 28px; font-weight: 800; letter-spacing: -.03em; }
+    .brand-sub { font-size: 14px; color: var(--muted); }
+    .nav-links { display: flex; gap: 26px; color: #475569; font-weight: 600; }
+    .nav-actions { display: flex; gap: 12px; }
+
+    .hero {
+      position: relative; overflow: hidden; padding: 84px 0 56px;
+    }
+    .blob, .blob2, .blob3 {
+      position: absolute; border-radius: 999px; filter: blur(70px); opacity: .55;
+    }
+    .blob { width: 280px; height: 280px; left: -80px; top: -20px; background: #67e8f9; }
+    .blob2 { width: 340px; height: 340px; right: -120px; top: 80px; background: #fdba74; }
+    .blob3 { width: 220px; height: 220px; left: 35%; bottom: 0; background: #bfdbfe; }
+    .hero-grid {
+      position: relative; display: grid; grid-template-columns: 1.08fr .92fr; gap: 34px; align-items: center;
+    }
+    h1 {
+      margin: 20px 0 0; font-size: clamp(44px, 7vw, 84px); line-height: .98; letter-spacing: -.05em;
+    }
+    .lead {
+      margin-top: 22px; max-width: 760px; font-size: 20px; line-height: 1.8; color: #475569;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 34px; }
+    .stat {
+      padding: 18px; border-radius: 26px; background: rgba(255,255,255,.82); border: 1px solid rgba(255,255,255,.72);
+      box-shadow: var(--shadow-soft);
+    }
+    .stat strong { display: block; font-size: 30px; }
+    .stat span { color: var(--muted); font-size: 14px; }
+
+    .booking-box { padding: 16px; }
+    .booking-top {
+      border-radius: 28px; background: linear-gradient(135deg, #0f172a 0%, #0f766e 35%, #38bdf8 100%);
+      color: white; padding: 28px;
+    }
+    .booking-top h3 { margin: 10px 0 0; font-size: 34px; line-height: 1.15; }
+    .booking-fields { display: grid; gap: 12px; margin-top: 22px; }
+    .booking-field {
+      padding: 14px 16px; border-radius: 18px; background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.14);
+      color: #dff8ff; font-size: 14px;
+    }
+    .mini-panels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+    .mini {
+      padding: 18px; border-radius: 24px; font-weight: 700; color: #0f172a;
+    }
+    .mini small { display: block; color: rgba(15,23,42,.62); text-transform: uppercase; letter-spacing: .12em; font-size: 11px; margin-bottom: 8px; }
+    .mini:nth-child(1) { background: linear-gradient(135deg, #ffe7ba, #ffd29d); }
+    .mini:nth-child(2) { background: linear-gradient(135deg, #d9f7ff, #bae6fd); }
+    .mini:nth-child(3) { background: linear-gradient(135deg, #ede9fe, #dbeafe); }
+
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 26px; }
+    .section-head h2 { margin: 10px 0 0; font-size: clamp(34px, 5vw, 54px); letter-spacing: -.04em; }
+    .section-head p { max-width: 700px; line-height: 1.9; color: #475569; }
+
+    .locations { grid-template-columns: repeat(4, 1fr); }
+    .outline-cool { background: linear-gradient(135deg, #67e8f9, #60a5fa); padding: 1px; border-radius: var(--radius-xl); }
+    .outline-warm { background: linear-gradient(135deg, #fdba74, #f472b6); padding: 1px; border-radius: var(--radius-xl); }
+    .location-card > div { background: white; border-radius: var(--radius-xl); padding: 22px; height: 100%; }
+    .thumb {
+      height: 180px; border-radius: 24px; background: linear-gradient(135deg, #e0f2fe, #fef3c7); margin-bottom: 18px;
+    }
+    .location-card h3 { margin: 0; font-size: 28px; letter-spacing: -.03em; }
+    .location-card p { color: var(--muted); line-height: 1.8; }
+    .link-arrow { color: #0369a1; font-weight: 700; }
+
+    .featured-wrap { background: linear-gradient(180deg, #f8fbff 0%, #eef8ff 100%); }
+    .featured { grid-template-columns: repeat(4, 1fr); }
+    .property-card { overflow: hidden; }
+    .property-top {
+      height: 260px; position: relative;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9, #0f766e);
+    }
+    .property-top.warm { background: linear-gradient(135deg, #fb923c, #f97316, #ec4899); }
+    .property-top.indigo { background: linear-gradient(135deg, #14b8a6, #0ea5e9, #6366f1); }
+    .property-top.sun { background: linear-gradient(135deg, #f59e0b, #f97316, #ef4444); }
+    .property-badge {
+      position: absolute; left: 16px; top: 16px; padding: 8px 13px; border-radius: 999px; background: rgba(255,255,255,.92);
+      font-size: 12px; font-weight: 800; box-shadow: var(--shadow-soft);
+    }
+    .property-body { padding: 24px; }
+    .property-body h3 { margin: 0; font-size: 26px; line-height: 1.15; letter-spacing: -.03em; }
+    .meta { margin-top: 10px; color: #0369a1; font-weight: 700; }
+    .property-body p { color: var(--muted); line-height: 1.85; }
+
+    .two-col { grid-template-columns: .96fr 1.04fr; align-items: center; }
+    .mini-grid { grid-template-columns: repeat(2, 1fr); }
+    .info-box {
+      padding: 24px; border-radius: var(--radius-xl); background: white; box-shadow: var(--shadow-soft);
+    }
+    .icon-box { width: 52px; height: 52px; border-radius: 18px; background: linear-gradient(135deg, #e0f2fe, #dbeafe); margin-bottom: 14px; }
+    .info-box h3 { margin: 0; font-size: 28px; letter-spacing: -.03em; }
+    .info-box p { color: var(--muted); line-height: 1.8; }
+
+    .owners {
+      position: relative; overflow: hidden; background: linear-gradient(135deg, #082f49 0%, #0f172a 35%, #164e63 100%);
+      color: white;
+    }
+    .owners::before, .owners::after {
+      content: ""; position: absolute; border-radius: 999px; filter: blur(70px); opacity: .24;
+    }
+    .owners::before { width: 260px; height: 260px; left: 0; top: 0; background: #22d3ee; }
+    .owners::after { width: 300px; height: 300px; right: 0; bottom: 0; background: #fdba74; }
+    .owners-grid { position: relative; grid-template-columns: 1.05fr .95fr; align-items: center; }
+    .owners p { color: #d6ecf3; line-height: 1.9; }
+    .pill-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 24px; }
+    .pill {
+      padding: 14px 16px; border-radius: 18px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.06);
+      backdrop-filter: blur(8px); color: #edf9ff; font-size: 14px;
+    }
+    .owners-form {
+      padding: 28px; border-radius: var(--radius-xl); background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(14px); box-shadow: var(--shadow);
+    }
+    .owners-form h3 { margin: 0; font-size: 38px; line-height: 1.05; }
+    .owners-form p { margin-top: 12px; }
+    .owner-field {
+      padding: 15px 16px; border-radius: 18px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.10);
+      color: #bdd6dd; font-size: 14px;
+    }
+
+    .cta-panel {
+      padding: 36px; border-radius: 38px; border: 1px solid #e2e8f0; background: linear-gradient(135deg, #fff7ed, #eff6ff, #ecfeff);
+      box-shadow: var(--shadow);
+    }
+    .cta-grid { grid-template-columns: 1.08fr .92fr; align-items: center; }
+    .simple-grid { grid-template-columns: repeat(2, 1fr); }
+    .simple-card {
+      padding: 22px; border-radius: 28px; background: rgba(255,255,255,.84); box-shadow: var(--shadow-soft);
+      font-size: 22px; font-weight: 700;
+    }
+
+    footer { border-top: 1px solid #e2e8f0; background: white; }
+    .footer-grid { grid-template-columns: 1.2fr 1fr 1fr 1fr; }
+    footer h4 { margin: 0; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: #64748b; }
+    footer p, footer a, footer div { color: #475569; line-height: 1.9; }
+
+    @media (max-width: 1100px) {
+      .hero-grid, .two-col, .owners-grid, .cta-grid, .locations, .featured, .footer-grid { grid-template-columns: 1fr 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .nav { flex-wrap: wrap; }
+      .hero-grid, .two-col, .owners-grid, .cta-grid, .locations, .featured, .footer-grid, .simple-grid, .mini-grid, .pill-grid, .mini-panels {
+        grid-template-columns: 1fr;
+      }
+      .section-head { flex-direction: column; align-items: start; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .hero { padding-top: 58px; }
+      .section { padding: 54px 0; }
+      .brand-title { font-size: 24px; }
+      .booking-top h3, .owners-form h3 { font-size: 28px; }
+    }
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body>
+  <header>
+    <div class="container nav">
+      <div>
+        <div class="brand-title">Ocean Vacations</div>
+        <div class="brand-sub">Vacation Rentals & Property Management</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#rentals">Rentals</a>
+        <a href="#locations">Locations</a>
+        <a href="#owners">Owners</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-secondary" href="https://oceanvacationsmb.guestybookings.com/en">Search stays</a>
+        <a class="btn btn-primary" href="#owners">List your property</a>
+      </div>
+    </div>
+  </header>
 
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="text-2xl font-bold tracking-tighter text-blue-600">OCEAN<span class="text-cyan-500">VACATIONS</span></span>
-                </div>
-                <div class="hidden md:flex space-x-8 font-semibold text-slate-600">
-                    <a href="#rentals" class="hover:text-blue-600">Our Rentals</a>
-                    <a href="#management" class="hover:text-blue-600">Property Management</a>
-                    <a href="#reviews" class="hover:text-blue-600">Guest Reviews</a>
-                </div>
-                <div>
-                    <a href="https://oceanvacationsmb.guestybookings.com/en" class="coral-btn text-white px-6 py-3 rounded-full font-bold shadow-lg">
-                        BOOK DIRECT & SAVE
-                    </a>
-                </div>
-            </div>
+  <section class="hero">
+    <div class="blob"></div>
+    <div class="blob2"></div>
+    <div class="blob3"></div>
+    <div class="container hero-grid">
+      <div>
+        <div class="badge">Myrtle Beach • North Myrtle Beach • Surfside Beach • Garden City</div>
+        <h1>A beautiful coastal booking site built to attract guests and owners</h1>
+        <p class="lead">Direct-book oceanfront condos, beach houses, and large group vacation homes across the Grand Strand. Ocean Vacations also provides full-service property management for owners who want stronger revenue, cleaner operations, and hands-free support.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://oceanvacationsmb.guestybookings.com/en">Book direct now</a>
+          <a class="btn btn-secondary" href="#featured">Explore featured stays</a>
         </div>
-    </nav>
-
-    <header class="relative h-[600px] flex items-center justify-center text-white">
-        <div class="absolute inset-0 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" alt="Myrtle Beach Coast" class="w-full h-full object-cover brightness-75">
+        <div class="stats">
+          <div class="stat"><strong>36+</strong><span>Premium homes</span></div>
+          <div class="stat"><strong>4</strong><span>Coastal areas</span></div>
+          <div class="stat"><strong>13</strong><span>Years of experience</span></div>
+          <div class="stat"><strong>Full</strong><span>Owner support</span></div>
         </div>
-        <div class="relative z-10 text-center px-4">
-            <h1 class="text-5xl md:text-7xl font-bold mb-4 drop-shadow-lg">Beach Life Awaits.</h1>
-            <p class="text-xl md:text-2xl mb-8 font-light drop-shadow-md">Luxury Myrtle Beach Rentals Without the Booking Fees.</p>
-            <div class="bg-white p-2 rounded-xl shadow-2xl inline-block">
-                <a href="https://oceanvacationsmb.guestybookings.com/en" class="beachy-gradient text-white px-10 py-4 rounded-lg font-bold text-lg inline-block">
-                    View All 15+ Properties
-                </a>
-            </div>
+      </div>
+      <div class="card booking-box">
+        <div class="booking-top">
+          <div class="badge" style="background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.18); color:white; box-shadow:none;">Guesty connected</div>
+          <h3>Search availability and drive direct bookings</h3>
+          <div class="booking-fields">
+            <div class="booking-field">Destination</div>
+            <div class="booking-field">Check in</div>
+            <div class="booking-field">Check out</div>
+            <div class="booking-field">Guests</div>
+          </div>
+          <a class="btn" style="width:100%; margin-top:16px; background:white; color:#0f172a;" href="https://oceanvacationsmb.guestybookings.com/en">Open booking engine</a>
         </div>
-    </header>
-
-    <section id="rentals" class="py-20 max-w-7xl mx-auto px-4">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-slate-900">Featured Homes</h2>
-            <div class="h-1 w-20 bg-cyan-400 mx-auto mt-4"></div>
+        <div class="mini-panels">
+          <div class="mini"><small>Guests</small>Direct savings</div>
+          <div class="mini"><small>Owners</small>Revenue growth</div>
+          <div class="mini"><small>Support</small>Local team</div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow border border-slate-100">
-                <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=800&q=80" alt="Oceanfront Villa" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Oceanfront Grand Villa</h3>
-                    <p class="text-slate-500 text-sm mb-4">8 Bedrooms • 6 Baths • Sleeps 20</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-blue-600 font-bold text-lg">From $450/nt</span>
-                        <a href="https://oceanvacationsmb.guestybookings.com/en" class="text-cyan-600 font-semibold border-b-2 border-cyan-600">View House</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow border border-slate-100">
-                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80" alt="Modern Beach House" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">The Coastal Retreat</h3>
-                    <p class="text-slate-500 text-sm mb-4">5 Bedrooms • 4 Baths • Sleeps 12</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-blue-600 font-bold text-lg">From $299/nt</span>
-                        <a href="https://oceanvacationsmb.guestybookings.com/en" class="text-cyan-600 font-semibold border-b-2 border-cyan-600">View House</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow border border-slate-100">
-                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Luxury Condo" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Sea Breeze Penthouse</h3>
-                    <p class="text-slate-500 text-sm mb-4">3 Bedrooms • 2 Baths • Sleeps 8</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-blue-600 font-bold text-lg">From $185/nt</span>
-                        <a href="https://oceanvacationsmb.guestybookings.com/en" class="text-cyan-600 font-semibold border-b-2 border-cyan-600">View House</a>
-                    </div>
-                </div>
-            </div>
+  <section id="locations" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Coastal locations</div>
+          <h2>One brand across the Grand Strand</h2>
         </div>
-    </section>
+        <p>This site is structured to support both design and SEO, with clear location-focused sections for Myrtle Beach, North Myrtle Beach, Surfside Beach, and Garden City.</p>
+      </div>
+      <div class="grid locations">
+        <div class="outline-cool location-card"><div><div class="thumb"></div><h3>Myrtle Beach</h3><p>Oceanfront condos, central stays, golf trips, and large beach homes close to the Grand Strand’s biggest attractions.</p><a class="link-arrow" href="https://oceanvacationsmb.guestybookings.com/en">Browse rentals →</a></div></div>
+        <div class="outline-warm location-card"><div><div class="thumb"></div><h3>North Myrtle Beach</h3><p>Family-friendly vacation rentals with beach access, spacious layouts, and a quieter coastal feel.</p><a class="link-arrow" href="https://oceanvacationsmb.guestybookings.com/en">Browse rentals →</a></div></div>
+        <div class="outline-cool location-card"><div><div class="thumb"></div><h3>Surfside Beach</h3><p>Large group homes, private pools, and easy beach days in one of the most popular family areas on the coast.</p><a class="link-arrow" href="https://oceanvacationsmb.guestybookings.com/en">Browse rentals →</a></div></div>
+        <div class="outline-warm location-card"><div><div class="thumb"></div><h3>Garden City</h3><p>Relaxed beach homes and coastal stays for guests who want a more laid-back Grand Strand experience.</p><a class="link-arrow" href="https://oceanvacationsmb.guestybookings.com/en">Browse rentals →</a></div></div>
+      </div>
+    </div>
+  </section>
 
-    <section id="management" class="beachy-gradient py-24 text-white">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold mb-6">Earn More. Worry Less.</h2>
-            <p class="text-xl mb-10 opacity-90">Are you an owner in Myrtle Beach? We use Guesty API technology and 24/7 automated owner statements to maximize your ROI while keeping your property 5-star ready.</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <div class="bg-white/20 backdrop-blur-md p-6 rounded-xl w-64">
-                    <h4 class="font-bold text-2xl">20% +</h4>
-                    <p class="text-sm uppercase tracking-widest">Revenue Increase</p>
-                </div>
-                <div class="bg-white/20 backdrop-blur-md p-6 rounded-xl w-64">
-                    <h4 class="font-bold text-2xl text-orange-200">Full Tech</h4>
-                    <p class="text-sm uppercase tracking-widest">Automated Reporting</p>
-                </div>
-            </div>
-            <a href="mailto:your-email@oceanvacationsmb.com" class="mt-12 inline-block bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:bg-slate-100 transition">
-                GET A FREE REVENUE EVALUATION
-            </a>
+  <section id="featured" class="section featured-wrap">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Featured properties</div>
+          <h2>Vacation-style cards built to convert</h2>
         </div>
-    </section>
-
-    <section id="reviews" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">What Our Guests Say</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <blockquote class="border-l-4 border-cyan-400 pl-6 py-4 bg-slate-50 italic text-lg">
-                    "Booking direct through Ocean Vacations saved us over $200 in Airbnb fees. The house was spotless and the beach was just steps away. We will definitely be back!"
-                    <footer class="mt-4 font-bold text-slate-900">— Sarah J., 2025 Guest</footer>
-                </blockquote>
-                <blockquote class="border-l-4 border-cyan-400 pl-6 py-4 bg-slate-50 italic text-lg">
-                    "Managing my property through Ana and her team has been seamless. The automated reports are accurate and my occupancy has never been higher."
-                    <footer class="mt-4 font-bold text-slate-900">— Local Property Owner</footer>
-                </blockquote>
-            </div>
+        <p>I linked these cards to your real booking engine property pages. The final version can use your real listing images once you upload them or share direct image URLs.</p>
+      </div>
+      <div class="grid featured">
+        <div class="soft-card property-card">
+          <div class="property-top"><div class="property-badge">Large groups</div></div>
+          <div class="property-body">
+            <h3>Spacious Getaway • Pool • Walk to Beach</h3>
+            <div class="meta">Myrtle Beach • 8 BR • Sleeps 19</div>
+            <p>A standout large-group home with direct booking flow and strong vacation appeal for reunions, golf trips, and multi-family stays.</p>
+            <a class="btn" style="background:#0f172a; color:white; padding:12px 18px;" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1a9faae7e80013b0929e">View property</a>
+          </div>
         </div>
-    </section>
-
-    <footer class="bg-slate-900 text-slate-400 py-12">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="mb-4">&copy; 2026 Ocean Vacations Myrtle Beach. All Rights Reserved.</p>
-            <div class="flex justify-center space-x-6">
-                <a href="#" class="hover:text-white underline">Terms of Service</a>
-                <a href="#" class="hover:text-white underline">Privacy Policy</a>
-                <a href="#management" class="hover:text-white underline">Partner With Us</a>
-            </div>
+        <div class="soft-card property-card">
+          <div class="property-top warm"><div class="property-badge">Beach favorite</div></div>
+          <div class="property-body">
+            <h3>Coastal Retreat • Pool + Steps to Beach</h3>
+            <div class="meta">Surfside Beach • 7 BR • Sleeps 20</div>
+            <p>Built to catch attention with family-friendly energy, private-pool appeal, and a short walk to the beach.</p>
+            <a class="btn" style="background:#0f172a; color:white; padding:12px 18px;" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1ab356a6dd0021f7fee5">View property</a>
+          </div>
         </div>
-    </footer>
+        <div class="soft-card property-card">
+          <div class="property-top indigo"><div class="property-badge">Family pick</div></div>
+          <div class="property-body">
+            <h3>Sea Gem • Private Pool • Beach Access</h3>
+            <div class="meta">Surfside Beach • 6 BR • Private Pool</div>
+            <p>A polished featured card for guests who want a stylish coastal stay with a resort feel and simple direct booking.</p>
+            <a class="btn" style="background:#0f172a; color:white; padding:12px 18px;" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1a43ccc0790022ab7f6a">View property</a>
+          </div>
+        </div>
+        <div class="soft-card property-card">
+          <div class="property-top sun"><div class="property-badge">Couples stay</div></div>
+          <div class="property-body">
+            <h3>Central Myrtle Beach Escape</h3>
+            <div class="meta">Myrtle Beach • 1 BR • Near Broadway</div>
+            <p>Adds variety to the inventory mix and helps convert couples and smaller groups looking for location and value.</p>
+            <a class="btn" style="background:#0f172a; color:white; padding:12px 18px;" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1a857335e2001983e6d5">View property</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section id="rentals" class="section">
+    <div class="container grid two-col">
+      <div>
+        <div class="eyebrow">Why this design works</div>
+        <h2>Built for direct bookings, trust, and SEO growth</h2>
+        <p class="lead" style="font-size:18px; max-width:none;">Ocean Vacations offers vacation rentals and property management services throughout Myrtle Beach, North Myrtle Beach, Surfside Beach, and Garden City. The site is designed to feel bright, upscale, and coastal while still keeping the booking path simple and clear.</p>
+        <p style="color:#475569; line-height:1.9;">Guests see polished rentals, strong location coverage, and easy booking access. Owners see a professional management brand with clear service value and a premium presentation that builds confidence.</p>
+      </div>
+      <div class="grid mini-grid">
+        <div class="info-box"><div class="icon-box"></div><h3>Oceanfront Rentals</h3><p>Clean section styling that can open into a location page or category page.</p></div>
+        <div class="info-box"><div class="icon-box"></div><h3>Large Group Homes</h3><p>Designed to highlight high-value homes for families, reunions, and golf trips.</p></div>
+        <div class="info-box"><div class="icon-box"></div><h3>Family Friendly Stays</h3><p>Clear structure for amenities, local attractions, and trust-building content.</p></div>
+        <div class="info-box"><div class="icon-box"></div><h3>Property Management</h3><p>Strong owner-facing section that supports lead generation and local authority.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="owners" class="section owners">
+    <div class="container grid owners-grid">
+      <div>
+        <div class="eyebrow" style="color:#a5f3fc;">For property owners</div>
+        <h2 style="color:white;">A premium management section that helps win owner leads</h2>
+        <p>Your brand is not just for guests. This website also presents Ocean Vacations as a serious property management company serving vacation rental owners and absentee owners across the Grand Strand.</p>
+        <div class="grid pill-grid">
+          <div class="pill">Dynamic pricing and revenue strategy</div>
+          <div class="pill">Guest communication from inquiry through checkout</div>
+          <div class="pill">Cleaning and maintenance coordination</div>
+          <div class="pill">Local market knowledge across the Grand Strand</div>
+          <div class="pill">Monthly reporting and owner transparency</div>
+          <div class="pill">Second-home and absentee-owner support</div>
+        </div>
+      </div>
+      <div class="owners-form">
+        <h3>Request a management consultation</h3>
+        <p>Built to capture owner leads with a stronger luxury look and clearer value proposition.</p>
+        <div class="grid" style="margin-top:20px; gap:12px;">
+          <div class="owner-field">Full name</div>
+          <div class="owner-field">Email address</div>
+          <div class="owner-field">Phone number</div>
+          <div class="owner-field">Property location</div>
+          <div class="owner-field">Tell us about your home</div>
+        </div>
+        <a class="btn" style="width:100%; background:white; color:#0f172a; margin-top:16px;" href="https://www.oceanvacationsmb.com/list-with-us">Learn about owner services</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="revenue-tool">
+    <div class="container">
+      <div class="cta-panel" style="background: linear-gradient(135deg, #082f49, #0f172a, #164e63); color: white; border: 1px solid rgba(255,255,255,.08);">
+        <div class="grid cta-grid">
+          <div>
+            <div class="eyebrow" style="color:#a5f3fc;">Owner lead tool</div>
+            <h2 style="color:white;">See how much your property could earn</h2>
+            <p style="color:#d6ecf3; line-height:1.9;">This is the owner-conversion tool you mentioned. It gives homeowners a fast revenue range based on area, home size, and features, while making Ocean Vacations look more advanced and professional.</p>
+            <div class="grid" style="gap:12px; margin-top:22px;">
+              <div class="pill">Strong lead magnet for property management</div>
+              <div class="pill">Designed for Myrtle Beach area homes</div>
+              <div class="pill">Can be upgraded later with your real performance data</div>
+            </div>
+          </div>
+          <div class="owners-form" style="background: rgba(255,255,255,.08);">
+            <h3 style="font-size:34px;">Get an instant estimate</h3>
+            <p>Use this version for your GitHub test page now, then we can connect it to a live lead form later.</p>
+            <form id="revenueForm" class="grid" style="margin-top:18px; gap:12px;">
+              <input id="address" class="owner-field" type="text" placeholder="Property address" />
+              <select id="city" class="owner-field">
+                <option>Myrtle Beach</option>
+                <option>North Myrtle Beach</option>
+                <option>Surfside Beach</option>
+                <option>Garden City</option>
+              </select>
+              <select id="propertyType" class="owner-field">
+                <option>Condo</option>
+                <option>House</option>
+                <option>Large Group Home</option>
+              </select>
+              <input id="bedrooms" class="owner-field" type="number" min="1" max="20" placeholder="Bedrooms" />
+              <label class="pill" style="display:flex; align-items:center; gap:10px;"><input id="pool" type="checkbox" /> Has private pool</label>
+              <label class="pill" style="display:flex; align-items:center; gap:10px;"><input id="oceanfront" type="checkbox" /> Oceanfront or steps to beach</label>
+              <button class="btn" style="width:100%; background:white; color:#0f172a; border:none;" type="submit">Calculate revenue range</button>
+            </form>
+            <div id="revenueResult" style="display:none; margin-top:16px; padding:18px; border-radius:22px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.12);">
+              <div style="font-size:12px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:#a5f3fc;">Estimated annual revenue</div>
+              <div id="estimateRange" style="margin-top:10px; font-size:32px; font-weight:800; line-height:1.1; color:white;"></div>
+              <div id="estimateDetails" style="margin-top:8px; color:#d6ecf3;"></div>
+              <div style="margin-top:10px; color:#cbd5e1; font-size:14px; line-height:1.7;">This is a planning estimate based on local market assumptions and property features. Final performance depends on seasonality, condition, amenities, location, and management strategy.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cta-panel">
+      <div class="grid cta-grid">
+        <div>
+          <div class="eyebrow">Brand message</div>
+          <h2>Professional, colorful, coastal, and conversion-focused</h2>
+          <p style="color:#475569; line-height:1.9;">This version is styled to feel more premium and vacation-driven than your current site while still keeping a simple booking path. It also makes space for stronger SEO pages later, including separate landing pages for Myrtle Beach, North Myrtle Beach, Surfside Beach, Garden City, oceanfront rentals, and property management.</p>
+        </div>
+        <div class="grid simple-grid">
+          <div class="simple-card">Direct booking flow</div>
+          <div class="simple-card">Location-based SEO</div>
+          <div class="simple-card">Property management leads</div>
+          <div class="simple-card">Professional vacation feel</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact" class="section" style="padding-top:34px;">
+    <div class="container grid footer-grid">
+      <div>
+        <div class="brand-title" style="font-size:32px;">Ocean Vacations</div>
+        <p>Vacation rentals and property management throughout Myrtle Beach and the surrounding coastal communities.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div style="margin-top:14px;">Search properties</div>
+        <div>Property management</div>
+        <div>About us</div>
+        <div>Airbnb reviews</div>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div style="margin-top:14px;">843-222-6516</div>
+        <div>oceanvacationsmb@gmail.com</div>
+        <div>Myrtle Beach, South Carolina</div>
+      </div>
+      <div>
+        <h4>Booking</h4>
+        <div style="margin-top:14px;"><a href="https://oceanvacationsmb.guestybookings.com/en">Open booking engine</a></div>
+        <div><a href="https://www.oceanvacationsmb.com/list-with-us">Owner services</a></div>
+        <div><a href="https://www.oceanvacationsmb.com/contact">Contact page</a></div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const revenueForm = document.getElementById('revenueForm');
+    const revenueResult = document.getElementById('revenueResult');
+    const estimateRange = document.getElementById('estimateRange');
+    const estimateDetails = document.getElementById('estimateDetails');
+
+    if (revenueForm) {
+      revenueForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const city = document.getElementById('city').value;
+        const bedrooms = parseInt(document.getElementById('bedrooms').value || '0', 10);
+        const propertyType = document.getElementById('propertyType').value;
+        const pool = document.getElementById('pool').checked;
+        const oceanfront = document.getElementById('oceanfront').checked;
+
+        const cityBase = {
+          'Myrtle Beach': 32000,
+          'North Myrtle Beach': 36000,
+          'Surfside Beach': 39000,
+          'Garden City': 41000
+        };
+
+        const typeBoost = {
+          'Condo': 0,
+          'House': 9000,
+          'Large Group Home': 18000
+        };
+
+        const base = cityBase[city] || 32000;
+        const bedValue = Math.max(1, bedrooms) * 8500;
+        const extras = (pool ? 9000 : 0) + (oceanfront ? 14000 : 0) + (typeBoost[propertyType] || 0);
+        const estimate = base + bedValue + extras;
+        const low = Math.round(estimate * 0.9 / 1000) * 1000;
+        const high = Math.round(estimate * 1.18 / 1000) * 1000;
+
+        estimateRange.textContent = '$' + low.toLocaleString() + ' – $' + high.toLocaleString() + ' / year';
+        estimateDetails.textContent = city + ' • ' + bedrooms + ' BR • ' + propertyType + (pool ? ' • Pool' : '') + (oceanfront ? ' • Oceanfront' : '');
+        revenueResult.style.display = 'block';
+        revenueResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+  </script>
 </body>
 </html>
