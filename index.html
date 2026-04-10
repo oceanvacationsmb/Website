@@ -190,8 +190,38 @@
     .owners-form h3 { margin: 0; font-size: 38px; line-height: 1.05; }
     .owners-form p { margin-top: 12px; }
     .owner-field {
+      width: 100%;
       padding: 15px 16px; border-radius: 18px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.10);
       color: #bdd6dd; font-size: 14px;
+    }
+    select.owner-field, input.owner-field {
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .editor-bar {
+      position: fixed; right: 18px; bottom: 18px; z-index: 120;
+      display: flex; gap: 10px; flex-wrap: wrap; padding: 12px;
+      border-radius: 22px; background: rgba(15,23,42,.88); color: white;
+      box-shadow: 0 20px 45px rgba(15,23,42,.28); backdrop-filter: blur(14px);
+    }
+    .editor-btn {
+      border: none; border-radius: 999px; padding: 10px 14px; font-size: 13px; font-weight: 800;
+      cursor: pointer;
+    }
+    .editor-btn.primary { background: #38bdf8; color: #082f49; }
+    .editor-btn.dark { background: rgba(255,255,255,.12); color: white; }
+    .editing-active [data-editable="true"] {
+      outline: 2px dashed rgba(56,189,248,.9); outline-offset: 6px;
+      border-radius: 12px;
+    }
+    .booking-embed, .properties-embed {
+      width: 100%; border: 0; border-radius: 26px; background: white;
+      box-shadow: var(--shadow-soft);
+    }
+    .booking-embed { min-height: 680px; }
+    .properties-embed { min-height: 980px; }
+    .helper-note {
+      color: #64748b; line-height: 1.8; font-size: 14px;
     }
 
     .cta-panel {
@@ -274,13 +304,14 @@
         <div class="booking-top">
           <div class="badge" style="background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.18); color:white; box-shadow:none;">Guesty connected</div>
           <h3>Search availability and drive direct bookings</h3>
-          <div class="booking-fields">
-            <div class="booking-field">Destination</div>
-            <div class="booking-field">Check in</div>
-            <div class="booking-field">Check out</div>
-            <div class="booking-field">Guests</div>
-          </div>
-          <a class="btn" style="width:100%; margin-top:16px; background:white; color:#0f172a;" href="https://oceanvacationsmb.guestybookings.com/en">Open booking engine</a>
+          <form id="heroBookingForm" class="booking-fields">
+            <input id="heroDestination" class="booking-field" style="border:none; width:100%;" placeholder="Destination" />
+            <input id="heroCheckin" class="booking-field" style="border:none; width:100%;" type="date" placeholder="Check in" />
+            <input id="heroCheckout" class="booking-field" style="border:none; width:100%;" type="date" placeholder="Check out" />
+            <input id="heroGuests" class="booking-field" style="border:none; width:100%;" type="number" min="1" placeholder="Guests" />
+            <button class="btn" style="width:100%; margin-top:16px; background:white; color:#0f172a; border:none;" type="submit">Search booking engine</button>
+          </form>
+          <div class="helper-note" style="margin-top:10px; color:#e0f2fe;">The search button opens your live Guesty booking engine. The embedded section below lets guests browse without leaving the page.</div>
         </div>
         <div class="mini-panels">
           <div class="mini"><small>Guests</small>Direct savings</div>
@@ -288,6 +319,19 @@
           <div class="mini"><small>Support</small>Local team</div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section" id="live-search">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Live booking engine</div>
+          <h2>Search your real availability on the page</h2>
+        </div>
+        <p>Your live Guesty booking engine is embedded here so guests can browse inventory from the website while still seeing your direct-book brand.</p>
+      </div>
+      <iframe class="booking-embed" src="https://oceanvacationsmb.guestybookings.com/en" title="Ocean Vacations Booking Engine"></iframe>
     </div>
   </section>
 
@@ -376,6 +420,19 @@
     </div>
   </section>
 
+  <section class="section" id="all-properties">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Browse all properties</div>
+          <h2>Use your real inventory directly from Guesty</h2>
+        </div>
+        <p>This section pulls your public booking engine into the site so guests can browse the full catalog while you test the design on GitHub Pages.</p>
+      </div>
+      <iframe class="properties-embed" src="https://oceanvacationsmb.guestybookings.com/en" title="All Ocean Vacations Properties"></iframe>
+    </div>
+  </section>
+
   <section id="owners" class="section owners">
     <div class="container grid owners-grid">
       <div>
@@ -424,7 +481,8 @@
             <h3 style="font-size:34px;">Get an instant estimate</h3>
             <p>Use this version for your GitHub test page now, then we can connect it to a live lead form later.</p>
             <form id="revenueForm" class="grid" style="margin-top:18px; gap:12px;">
-              <input id="address" class="owner-field" type="text" placeholder="Property address" />
+              <input id="address" class="owner-field" type="text" placeholder="Property address" list="addressSuggestions" autocomplete="off" />
+              <datalist id="addressSuggestions"></datalist>
               <select id="city" class="owner-field">
                 <option>Myrtle Beach</option>
                 <option>North Myrtle Beach</option>
@@ -498,7 +556,82 @@
       </div>
     </div>
   </footer>
+  <div class="editor-bar">
+    <button id="editToggle" class="editor-btn primary" type="button">Edit page</button>
+    <button id="saveEdits" class="editor-btn dark" type="button">Save text</button>
+    <button id="resetEdits" class="editor-btn dark" type="button">Reset</button>
+  </div>
+
   <script>
+    const editableTargets = Array.from(document.querySelectorAll('h1, h2, h3, .lead, .meta, .brand-sub, .helper-note, footer p, .property-body p, .location-card p, .info-box p, .owners p'));
+    editableTargets.forEach((el, index) => {
+      el.setAttribute('data-editable', 'true');
+      const key = 'editable-' + index;
+      const saved = localStorage.getItem(key);
+      if (saved) el.innerHTML = saved;
+      el.dataset.editKey = key;
+    });
+
+    const editToggle = document.getElementById('editToggle');
+    const saveEdits = document.getElementById('saveEdits');
+    const resetEdits = document.getElementById('resetEdits');
+
+    function setEditMode(active) {
+      document.body.classList.toggle('editing-active', active);
+      editableTargets.forEach(el => el.contentEditable = active ? 'true' : 'false');
+      editToggle.textContent = active ? 'Stop editing' : 'Edit page';
+    }
+
+    editToggle.addEventListener('click', () => {
+      const active = document.body.classList.contains('editing-active');
+      setEditMode(!active);
+    });
+
+    saveEdits.addEventListener('click', () => {
+      editableTargets.forEach(el => localStorage.setItem(el.dataset.editKey, el.innerHTML));
+      alert('Your text changes were saved in this browser.');
+    });
+
+    resetEdits.addEventListener('click', () => {
+      editableTargets.forEach(el => localStorage.removeItem(el.dataset.editKey));
+      location.reload();
+    });
+
+    const heroBookingForm = document.getElementById('heroBookingForm');
+    if (heroBookingForm) {
+      heroBookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        window.open('https://oceanvacationsmb.guestybookings.com/en', '_blank');
+      });
+    }
+
+    const addressInput = document.getElementById('address');
+    const addressSuggestions = document.getElementById('addressSuggestions');
+    let addressTimer;
+
+    if (addressInput && addressSuggestions) {
+      addressInput.addEventListener('input', function () {
+        const query = this.value.trim();
+        clearTimeout(addressTimer);
+        if (query.length < 3) return;
+        addressTimer = setTimeout(async () => {
+          try {
+            const url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&countrycodes=us&q=' + encodeURIComponent(query + ' South Carolina');
+            const response = await fetch(url, { headers: { 'Accept': 'application/json' } });
+            const results = await response.json();
+            addressSuggestions.innerHTML = '';
+            results.forEach(item => {
+              const option = document.createElement('option');
+              option.value = item.display_name;
+              addressSuggestions.appendChild(option);
+            });
+          } catch (error) {
+            console.error('Address lookup failed', error);
+          }
+        }, 250);
+      });
+    }
+
     const revenueForm = document.getElementById('revenueForm');
     const revenueResult = document.getElementById('revenueResult');
     const estimateRange = document.getElementById('estimateRange');
