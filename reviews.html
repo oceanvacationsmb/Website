@@ -1,146 +1,514 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ocean Vacations</title>
-
-<style>
-body {
-  margin:0;
-  font-family: Arial;
-  background:#f5f5f5;
-}
-
-header {
-  padding:20px;
-  text-align:center;
-  background:#fff;
-  border-bottom:1px solid #ddd;
-}
-
-.grid {
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap:15px;
-  padding:20px;
-}
-
-/* SMALL CARD */
-.card {
-  background:#fff;
-  border-radius:10px;
-  overflow:hidden;
-  cursor:pointer;
-  box-shadow:0 3px 10px rgba(0,0,0,0.1);
-  transition:.2s;
-}
-
-.card:hover {
-  transform:scale(1.03);
-}
-
-.card img {
-  width:100%;
-  height:140px;
-  object-fit:cover;
-}
-
-.card .info {
-  padding:10px;
-  font-size:14px;
-  font-weight:bold;
-}
-
-/* MODAL */
-.modal {
-  display:none;
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:rgba(0,0,0,0.7);
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-}
-
-.modal-content {
-  background:#fff;
-  padding:15px;
-  border-radius:10px;
-  max-width:500px;
-  width:95%;
-}
-
-.close {
-  float:right;
-  cursor:pointer;
-  font-size:18px;
-}
-
-/* EMBED SIZE */
-.airbnb-embed-frame {
-  width:100% !important;
-  height:320px !important;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ocean Vacations • Listings & Reviews</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f6f7f9;
+      color: #1f2937;
+    }
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    header p {
+      margin: 6px 0 0;
+      color: #6b7280;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .topbar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .topbar input {
+      width: 100%;
+      max-width: 340px;
+      padding: 12px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 15px;
+    }
+    .btn {
+      border: none;
+      background: #111827;
+      color: #fff;
+      padding: 11px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .btn.secondary {
+      background: #374151;
+    }
+    .btn.light {
+      background: #e5e7eb;
+      color: #111827;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+    }
+    .property-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+      overflow: hidden;
+      border: 1px solid #eef0f3;
+    }
+    .property-head {
+      padding: 16px 16px 10px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .property-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .property-meta {
+      margin-top: 6px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+    .embed-wrap {
+      padding: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 318px;
+      background: #fafafa;
+    }
+    .airbnb-embed-frame {
+      width: 100% !important;
+      max-width: 450px;
+      height: 300px !important;
+      margin: 0 auto !important;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    .property-actions {
+      padding: 0 14px 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .section-title {
+      margin: 26px 0 14px;
+      font-size: 24px;
+    }
+    .review-list {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      padding: 0 14px 16px;
+    }
+    .review-card {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .review-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .review-name {
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .review-date {
+      font-size: 12px;
+      color: #6b7280;
+    }
+    .review-stars {
+      font-size: 14px;
+    }
+    .review-text {
+      margin: 0;
+      line-height: 1.45;
+      color: #374151;
+      font-size: 14px;
+    }
+    .empty-state {
+      padding: 0 14px 18px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+    .admin-panel {
+      margin: 26px 0;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .admin-head {
+      padding: 16px 18px;
+      border-bottom: 1px solid #eef2f7;
+      background: #f9fafb;
+    }
+    .admin-head h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .admin-body {
+      padding: 18px;
+      display: grid;
+      gap: 18px;
+    }
+    .admin-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+    .field label {
+      font-size: 13px;
+      color: #374151;
+      font-weight: 700;
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      background: #fff;
+    }
+    .field textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+    .admin-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .codebox {
+      background: #111827;
+      color: #e5e7eb;
+      padding: 14px;
+      border-radius: 12px;
+      overflow: auto;
+      font-size: 13px;
+      line-height: 1.4;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .small-note {
+      color: #6b7280;
+      font-size: 13px;
+      margin-top: -8px;
+    }
+    .hidden { display: none !important; }
+    @media (max-width: 700px) {
+      .container { padding: 14px; }
+      .airbnb-embed-frame { height: 280px !important; }
+      .embed-wrap { min-height: 298px; }
+    }
+  </style>
 </head>
-
 <body>
+  <header>
+    <h1>Ocean Vacations</h1>
+    <p>Official Airbnb listing embeds with your own manually managed reviews</p>
+  </header>
 
-<header>
-  <h2>Ocean Vacations Properties</h2>
-</header>
-
-<div class="grid">
-
-  <!-- CARD 1 -->
-  <div class="card" onclick="openModal('1013851374933265441')">
-    <img src="https://via.placeholder.com/300x200">
-    <div class="info">8BR Myrtle Beach • ★4.81</div>
-  </div>
-
-  <!-- CARD 2 -->
-  <div class="card" onclick="openModal('1159597823002124183')">
-    <img src="https://via.placeholder.com/300x200">
-    <div class="info">8BR Myrtle Beach • ★4.67</div>
-  </div>
-
-</div>
-
-<!-- MODAL -->
-<div id="modal" class="modal" onclick="closeModal()">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <span class="close" onclick="closeModal()">✖</span>
-    <div id="embedContainer"></div>
-  </div>
-</div>
-
-<script>
-function openModal(id) {
-  document.getElementById("modal").style.display = "flex";
-
-  document.getElementById("embedContainer").innerHTML = `
-    <div class="airbnb-embed-frame"
-         data-id="${id}"
-         data-view="home"
-         data-hide-price="true">
-      <a href="https://www.airbnb.com/rooms/${id}?guests=1&adults=1&s=66&source=embed_widget">View</a>
+  <div class="container">
+    <div class="topbar">
+      <input id="searchInput" type="text" placeholder="Search properties" />
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn secondary" onclick="toggleAdmin()">Toggle Admin</button>
+        <button class="btn light" onclick="exportReviews()">Export Reviews JSON</button>
+      </div>
     </div>
-  `;
 
-  // reload Airbnb script
-  let script = document.createElement("script");
-  script.src = "https://www.airbnb.com/embeddable/airbnb_jssdk";
-  script.async = true;
-  document.body.appendChild(script);
-}
+    <div id="adminPanel" class="admin-panel">
+      <div class="admin-head">
+        <h2>Manual review manager</h2>
+      </div>
+      <div class="admin-body">
+        <div class="small-note">Use this only for review text you manually enter. Reviews are saved in your browser for testing.</div>
 
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
-  document.getElementById("embedContainer").innerHTML = "";
-}
-</script>
+        <div class="admin-grid">
+          <div class="field">
+            <label for="propertySelect">Property</label>
+            <select id="propertySelect"></select>
+          </div>
+          <div class="field">
+            <label for="guestName">Guest name</label>
+            <input id="guestName" type="text" placeholder="John" />
+          </div>
+          <div class="field">
+            <label for="reviewDate">Date</label>
+            <input id="reviewDate" type="text" placeholder="March 2026" />
+          </div>
+          <div class="field">
+            <label for="reviewStars">Stars</label>
+            <select id="reviewStars">
+              <option value="5">5</option>
+              <option value="4">4</option>
+              <option value="3">3</option>
+              <option value="2">2</option>
+              <option value="1">1</option>
+            </select>
+          </div>
+        </div>
 
+        <div class="field">
+          <label for="reviewText">Review text</label>
+          <textarea id="reviewText" placeholder="Paste review text here"></textarea>
+        </div>
+
+        <div class="admin-actions">
+          <button class="btn" onclick="addReview()">Add Review</button>
+          <button class="btn secondary" onclick="clearForm()">Clear Form</button>
+          <button class="btn light" onclick="clearPropertyReviews()">Clear Selected Property Reviews</button>
+        </div>
+
+        <div>
+          <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px;">Import existing review JSON</label>
+          <textarea id="importJson" placeholder='[{"propertyId":"1013851374933265441","name":"John","date":"March 2026","stars":5,"text":"Great stay"}]'></textarea>
+          <div class="admin-actions" style="margin-top:10px;">
+            <button class="btn secondary" onclick="importReviews()">Import JSON</button>
+          </div>
+        </div>
+
+        <div>
+          <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px;">Current review data</label>
+          <div id="jsonOutput" class="codebox"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="propertyGrid" class="grid"></div>
+  </div>
+
+  <script>
+    const properties = [
+      {
+        id: '1013851374933265441',
+        title: 'Myrtle Beach • 8 bedrooms • 11 beds • 7.5 baths',
+        short: '★4.81',
+        link: 'https://www.airbnb.com/rooms/1013851374933265441?guests=1&adults=1&s=66&source=embed_widget',
+        fallback: 'Home in Myrtle Beach · ★4.81 · 8 bedrooms · 11 beds · 7.5 baths'
+      },
+      {
+        id: '1159597823002124183',
+        title: 'Myrtle Beach • 8 bedrooms • 11 beds • 8 baths',
+        short: '★4.67',
+        link: 'https://www.airbnb.com/rooms/1159597823002124183?guests=1&adults=1&s=66&source=embed_widget',
+        fallback: 'Home in Myrtle Beach · ★4.67 · 8 bedrooms · 11 beds · 8 baths'
+      }
+    ];
+
+    const STORAGE_KEY = 'ocean_vacations_manual_reviews';
+
+    function getReviews() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      } catch {
+        return [];
+      }
+    }
+
+    function setReviews(reviews) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
+      renderProperties();
+      renderJson();
+    }
+
+    function stars(count) {
+      return '★'.repeat(Number(count || 5));
+    }
+
+    function populatePropertySelect() {
+      const select = document.getElementById('propertySelect');
+      select.innerHTML = properties.map(p => `<option value="${p.id}">${p.title}</option>`).join('');
+    }
+
+    function renderProperties() {
+      const grid = document.getElementById('propertyGrid');
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const allReviews = getReviews();
+
+      const filtered = properties.filter(p => {
+        const hay = `${p.title} ${p.short} ${p.fallback}`.toLowerCase();
+        return !query || hay.includes(query);
+      });
+
+      grid.innerHTML = filtered.map(property => {
+        const reviews = allReviews.filter(r => r.propertyId === property.id);
+        const reviewHtml = reviews.length
+          ? `<div class="review-list">${reviews.map((review, index) => `
+              <div class="review-card">
+                <div class="review-top">
+                  <div>
+                    <div class="review-name">${escapeHtml(review.name || 'Guest')}</div>
+                    <div class="review-date">${escapeHtml(review.date || '')}</div>
+                  </div>
+                  <div class="review-stars">${stars(review.stars)}</div>
+                </div>
+                <p class="review-text">${escapeHtml(review.text || '')}</p>
+                <div style="margin-top:10px; display:flex; justify-content:flex-end;">
+                  <button class="btn light" style="padding:8px 10px; font-size:12px;" onclick="deleteReview('${property.id}', ${index})">Delete</button>
+                </div>
+              </div>
+            `).join('')}</div>`
+          : `<div class="empty-state">No manual reviews added yet for this property.</div>`;
+
+        return `
+          <div class="property-card">
+            <div class="property-head">
+              <h3 class="property-title">${escapeHtml(property.title)}</h3>
+              <div class="property-meta">${escapeHtml(property.short)}</div>
+            </div>
+            <div class="embed-wrap">
+              <div class="airbnb-embed-frame" data-id="${property.id}" data-view="home" data-hide-price="true">
+                <a href="${property.link}" rel="nofollow">View On Airbnb</a>
+                <a href="${property.link}" rel="nofollow">${escapeHtml(property.fallback)}</a>
+              </div>
+            </div>
+            <div class="property-actions">
+              <a class="btn" href="${property.link}" target="_blank" rel="nofollow noopener">Open Listing</a>
+            </div>
+            <div style="padding: 0 14px 4px; font-weight:700; font-size:16px;">Guest Reviews</div>
+            ${reviewHtml}
+          </div>
+        `;
+      }).join('');
+
+      reloadAirbnbSdk();
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function reloadAirbnbSdk() {
+      const existing = document.getElementById('airbnb-sdk');
+      if (existing) existing.remove();
+      const script = document.createElement('script');
+      script.id = 'airbnb-sdk';
+      script.async = true;
+      script.src = 'https://www.airbnb.com/embeddable/airbnb_jssdk';
+      document.body.appendChild(script);
+    }
+
+    function addReview() {
+      const propertyId = document.getElementById('propertySelect').value;
+      const name = document.getElementById('guestName').value.trim();
+      const date = document.getElementById('reviewDate').value.trim();
+      const starsValue = document.getElementById('reviewStars').value;
+      const text = document.getElementById('reviewText').value.trim();
+
+      if (!text) {
+        alert('Please enter review text.');
+        return;
+      }
+
+      const reviews = getReviews();
+      reviews.push({ propertyId, name, date, stars: Number(starsValue), text });
+      setReviews(reviews);
+      clearForm();
+    }
+
+    function clearForm() {
+      document.getElementById('guestName').value = '';
+      document.getElementById('reviewDate').value = '';
+      document.getElementById('reviewStars').value = '5';
+      document.getElementById('reviewText').value = '';
+    }
+
+    function clearPropertyReviews() {
+      const propertyId = document.getElementById('propertySelect').value;
+      const reviews = getReviews().filter(r => r.propertyId !== propertyId);
+      setReviews(reviews);
+    }
+
+    function deleteReview(propertyId, indexInFiltered) {
+      const reviews = getReviews();
+      let seen = -1;
+      const next = reviews.filter(r => {
+        if (r.propertyId === propertyId) {
+          seen += 1;
+          return seen !== indexInFiltered;
+        }
+        return true;
+      });
+      setReviews(next);
+    }
+
+    function renderJson() {
+      document.getElementById('jsonOutput').textContent = JSON.stringify(getReviews(), null, 2);
+    }
+
+    function exportReviews() {
+      const data = JSON.stringify(getReviews(), null, 2);
+      navigator.clipboard.writeText(data).then(() => {
+        alert('Review JSON copied to clipboard.');
+      }).catch(() => {
+        alert(data);
+      });
+    }
+
+    function importReviews() {
+      const raw = document.getElementById('importJson').value.trim();
+      if (!raw) return;
+      try {
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) throw new Error('Invalid JSON');
+        setReviews(parsed);
+        document.getElementById('importJson').value = '';
+      } catch (e) {
+        alert('Invalid JSON format.');
+      }
+    }
+
+    function toggleAdmin() {
+      document.getElementById('adminPanel').classList.toggle('hidden');
+    }
+
+    document.getElementById('searchInput').addEventListener('input', renderProperties);
+
+    populatePropertySelect();
+    renderProperties();
+    renderJson();
+  </script>
 </body>
 </html>
