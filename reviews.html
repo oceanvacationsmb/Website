@@ -3,512 +3,611 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ocean Vacations • Listings & Reviews</title>
+  <title>Ocean Vacations | Myrtle Beach Vacation Rentals</title>
+  <meta
+    name="description"
+    content="Browse Ocean Vacations rental properties in Myrtle Beach, SC. Premium homes, apartments, large group stays, and coastal getaways with direct booking."
+  />
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f6f7f9;
       color: #1f2937;
+      background: #f8fafc;
     }
-    header {
-      background: #ffffff;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      background: #0f172a;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+
+    .topbar-inner,
+    .nav-inner,
+    .hero-inner,
+    .section-inner,
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav {
+      background: #fff;
       border-bottom: 1px solid #e5e7eb;
-      padding: 20px;
       position: sticky;
       top: 0;
       z-index: 20;
     }
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-    header p {
-      margin: 6px 0 0;
-      color: #6b7280;
-    }
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .topbar {
+
+    .nav-inner {
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
       justify-content: space-between;
-      margin-bottom: 18px;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 20px;
     }
-    .topbar input {
-      width: 100%;
-      max-width: 340px;
-      padding: 12px 14px;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
+
+    .brand {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
       font-size: 15px;
     }
-    .btn {
-      border: none;
-      background: #111827;
+
+    .hero {
+      background: linear-gradient(rgba(15, 23, 42, 0.62), rgba(15, 23, 42, 0.62)),
+        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
       color: #fff;
-      padding: 11px 14px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 14px;
+      padding: 80px 20px 90px;
     }
-    .btn.secondary {
-      background: #374151;
+
+    .hero-inner h1 {
+      margin: 0 0 14px;
+      font-size: 48px;
+      line-height: 1.05;
+      max-width: 760px;
     }
-    .btn.light {
-      background: #e5e7eb;
-      color: #111827;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 18px;
-    }
-    .property-card {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.07);
-      overflow: hidden;
-      border: 1px solid #eef0f3;
-    }
-    .property-head {
-      padding: 16px 16px 10px;
-      border-bottom: 1px solid #f1f5f9;
-    }
-    .property-title {
-      margin: 0;
+
+    .hero-inner p {
+      margin: 0 0 28px;
+      max-width: 760px;
       font-size: 18px;
-      font-weight: 700;
+      line-height: 1.6;
+      color: #e5e7eb;
     }
-    .property-meta {
-      margin-top: 6px;
-      color: #6b7280;
-      font-size: 14px;
-    }
-    .embed-wrap {
-      padding: 14px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 318px;
-      background: #fafafa;
-    }
-    .airbnb-embed-frame {
-      width: 100% !important;
-      max-width: 450px;
-      height: 300px !important;
-      margin: 0 auto !important;
-      overflow: hidden;
-      border-radius: 12px;
-    }
-    .property-actions {
-      padding: 0 14px 14px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .section-title {
-      margin: 26px 0 14px;
-      font-size: 24px;
-    }
-    .review-list {
-      display: grid;
-      gap: 12px;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      padding: 0 14px 16px;
-    }
-    .review-card {
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-      border-radius: 14px;
-      padding: 14px;
-    }
-    .review-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-    .review-name {
-      font-weight: 700;
-      font-size: 14px;
-    }
-    .review-date {
-      font-size: 12px;
-      color: #6b7280;
-    }
-    .review-stars {
-      font-size: 14px;
-    }
-    .review-text {
-      margin: 0;
-      line-height: 1.45;
-      color: #374151;
-      font-size: 14px;
-    }
-    .empty-state {
-      padding: 0 14px 18px;
-      color: #6b7280;
-      font-size: 14px;
-    }
-    .admin-panel {
-      margin: 26px 0;
+
+    .search-box {
       background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-      overflow: hidden;
-    }
-    .admin-head {
-      padding: 16px 18px;
-      border-bottom: 1px solid #eef2f7;
-      background: #f9fafb;
-    }
-    .admin-head h2 {
-      margin: 0;
-      font-size: 20px;
-    }
-    .admin-body {
+      color: #111827;
+      border-radius: 18px;
       padding: 18px;
       display: grid;
-      gap: 18px;
+      grid-template-columns: 2fr 1fr 1fr 1fr auto;
+      gap: 12px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
     }
-    .admin-grid {
-      display: grid;
-      gap: 14px;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    }
+
     .field {
-      display: grid;
+      display: flex;
+      flex-direction: column;
       gap: 6px;
     }
+
     .field label {
-      font-size: 13px;
-      color: #374151;
+      font-size: 12px;
+      font-weight: 700;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .field input,
+    .field select {
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 15px;
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 12px;
+      background: #0f172a;
+      color: #fff;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+    }
+
+    .stats {
+      padding: 34px 20px;
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .stat-card {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 40px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: #475569;
+      font-size: 15px;
+    }
+
+    .section {
+      padding: 44px 20px;
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: 34px;
+      color: #0f172a;
+    }
+
+    .section p.lead {
+      margin: 0 0 26px;
+      max-width: 850px;
+      color: #475569;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .chips {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #e2e8f0;
+      color: #0f172a;
+      font-size: 14px;
       font-weight: 700;
     }
-    .field input,
-    .field select,
-    .field textarea {
-      width: 100%;
-      padding: 11px 12px;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
-      font-size: 14px;
-      font-family: inherit;
+
+    .listing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
       background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
     }
-    .field textarea {
-      min-height: 110px;
-      resize: vertical;
+
+    .card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
     }
-    .admin-actions {
+
+    .card-body {
+      padding: 18px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1d4ed8;
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      color: #0f172a;
+    }
+
+    .meta {
+      color: #475569;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      margin: 0 0 18px;
+      color: #475569;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .card-actions {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
-    .codebox {
-      background: #111827;
-      color: #e5e7eb;
-      padding: 14px;
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .panel {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+    }
+
+    .panel h3 {
+      margin-top: 0;
+      font-size: 24px;
+      color: #0f172a;
+    }
+
+    .amenities {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 0;
+      list-style: none;
+      margin: 0;
+    }
+
+    .amenities li {
+      background: #f8fafc;
       border-radius: 12px;
-      overflow: auto;
-      font-size: 13px;
-      line-height: 1.4;
-      white-space: pre-wrap;
-      word-break: break-word;
+      padding: 12px 14px;
+      border: 1px solid #e5e7eb;
+      color: #334155;
+      font-size: 14px;
     }
-    .small-note {
-      color: #6b7280;
-      font-size: 13px;
-      margin-top: -8px;
+
+    .footer {
+      background: #0f172a;
+      color: #fff;
+      padding: 36px 20px;
+      margin-top: 36px;
     }
-    .hidden { display: none !important; }
-    @media (max-width: 700px) {
-      .container { padding: 14px; }
-      .airbnb-embed-frame { height: 280px !important; }
-      .embed-wrap { min-height: 298px; }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr;
+      gap: 24px;
+    }
+
+    .footer h4 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    .footer p,
+    .footer li {
+      color: #cbd5e1;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    @media (max-width: 1080px) {
+      .search-box,
+      .stats-grid,
+      .listing-grid,
+      .split,
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero-inner h1 {
+        font-size: 34px;
+      }
+
+      .search-box,
+      .stats-grid,
+      .listing-grid,
+      .split,
+      .footer-grid,
+      .amenities {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Ocean Vacations</h1>
-    <p>Official Airbnb listing embeds with your own manually managed reviews</p>
-  </header>
-
-  <div class="container">
-    <div class="topbar">
-      <input id="searchInput" type="text" placeholder="Search properties" />
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <button class="btn secondary" onclick="toggleAdmin()">Toggle Admin</button>
-        <button class="btn light" onclick="exportReviews()">Export Reviews JSON</button>
-      </div>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div>Myrtle Beach, SC Vacation Rentals</div>
+      <div>Call 843-222-6516 • oceanvacationsmb@gmail.com</div>
     </div>
-
-    <div id="adminPanel" class="admin-panel">
-      <div class="admin-head">
-        <h2>Manual review manager</h2>
-      </div>
-      <div class="admin-body">
-        <div class="small-note">Use this only for review text you manually enter. Reviews are saved in your browser for testing.</div>
-
-        <div class="admin-grid">
-          <div class="field">
-            <label for="propertySelect">Property</label>
-            <select id="propertySelect"></select>
-          </div>
-          <div class="field">
-            <label for="guestName">Guest name</label>
-            <input id="guestName" type="text" placeholder="John" />
-          </div>
-          <div class="field">
-            <label for="reviewDate">Date</label>
-            <input id="reviewDate" type="text" placeholder="March 2026" />
-          </div>
-          <div class="field">
-            <label for="reviewStars">Stars</label>
-            <select id="reviewStars">
-              <option value="5">5</option>
-              <option value="4">4</option>
-              <option value="3">3</option>
-              <option value="2">2</option>
-              <option value="1">1</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="reviewText">Review text</label>
-          <textarea id="reviewText" placeholder="Paste review text here"></textarea>
-        </div>
-
-        <div class="admin-actions">
-          <button class="btn" onclick="addReview()">Add Review</button>
-          <button class="btn secondary" onclick="clearForm()">Clear Form</button>
-          <button class="btn light" onclick="clearPropertyReviews()">Clear Selected Property Reviews</button>
-        </div>
-
-        <div>
-          <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px;">Import existing review JSON</label>
-          <textarea id="importJson" placeholder='[{"propertyId":"1013851374933265441","name":"John","date":"March 2026","stars":5,"text":"Great stay"}]'></textarea>
-          <div class="admin-actions" style="margin-top:10px;">
-            <button class="btn secondary" onclick="importReviews()">Import JSON</button>
-          </div>
-        </div>
-
-        <div>
-          <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px;">Current review data</label>
-          <div id="jsonOutput" class="codebox"></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="propertyGrid" class="grid"></div>
   </div>
 
-  <script>
-    const properties = [
-      {
-        id: '1013851374933265441',
-        title: 'Myrtle Beach • 8 bedrooms • 11 beds • 7.5 baths',
-        short: '★4.81',
-        link: 'https://www.airbnb.com/rooms/1013851374933265441?guests=1&adults=1&s=66&source=embed_widget',
-        fallback: 'Home in Myrtle Beach · ★4.81 · 8 bedrooms · 11 beds · 7.5 baths'
-      },
-      {
-        id: '1159597823002124183',
-        title: 'Myrtle Beach • 8 bedrooms • 11 beds • 8 baths',
-        short: '★4.67',
-        link: 'https://www.airbnb.com/rooms/1159597823002124183?guests=1&adults=1&s=66&source=embed_widget',
-        fallback: 'Home in Myrtle Beach · ★4.67 · 8 bedrooms · 11 beds · 8 baths'
-      }
-    ];
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">Ocean Vacations</div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Rentals</a>
+        <a href="#">Houses</a>
+        <a href="#">Apartments</a>
+        <a href="#">Property Management</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-    const STORAGE_KEY = 'ocean_vacations_manual_reviews';
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Find your dream Myrtle Beach vacation rental</h1>
+      <p>
+        From studio retreats for couples to expansive 8-bedroom homes for up to
+        22 guests and even full duplex properties for larger groups, Ocean
+        Vacations offers professionally managed stays across Myrtle Beach and
+        nearby coastal communities.
+      </p>
 
-    function getReviews() {
-      try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-      } catch {
-        return [];
-      }
-    }
+      <div class="search-box">
+        <div class="field">
+          <label>Destination or property</label>
+          <input type="text" placeholder="Myrtle Beach, North Myrtle Beach, house name" />
+        </div>
+        <div class="field">
+          <label>Check-in</label>
+          <input type="date" />
+        </div>
+        <div class="field">
+          <label>Check-out</label>
+          <input type="date" />
+        </div>
+        <div class="field">
+          <label>Guests</label>
+          <select>
+            <option>2 Guests</option>
+            <option>4 Guests</option>
+            <option>8 Guests</option>
+            <option>12 Guests</option>
+            <option>16+ Guests</option>
+          </select>
+        </div>
+        <button class="btn">Search</button>
+      </div>
+    </div>
+  </section>
 
-    function setReviews(reviews) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
-      renderProperties();
-      renderJson();
-    }
+  <section class="stats">
+    <div class="section-inner">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">36</div>
+          <div class="stat-label">Premium homes for rent</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Different locations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">13</div>
+          <div class="stat-label">Years of experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">63</div>
+          <div class="stat-label">Team members</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    function stars(count) {
-      return '★'.repeat(Number(count || 5));
-    }
+  <section class="section">
+    <div class="section-inner">
+      <h2>Browse rental types</h2>
+      <p class="lead">
+        Your current site already separates inventory into houses and apartments,
+        with bedroom groupings that are ideal for SEO landing pages and filtered
+        search results.
+      </p>
+      <div class="chips">
+        <span class="chip">Houses</span>
+        <span class="chip">Apartments</span>
+        <span class="chip">3–4 Bedrooms</span>
+        <span class="chip">5 Bedrooms</span>
+        <span class="chip">6 Bedrooms</span>
+        <span class="chip">7 Bedrooms</span>
+        <span class="chip">7–8 Bedrooms</span>
+        <span class="chip">Studio & 1 Bedroom</span>
+        <span class="chip">2 Bedroom Apartments</span>
+      </div>
 
-    function populatePropertySelect() {
-      const select = document.getElementById('propertySelect');
-      select.innerHTML = properties.map(p => `<option value="${p.id}">${p.title}</option>`).join('');
-    }
-
-    function renderProperties() {
-      const grid = document.getElementById('propertyGrid');
-      const query = document.getElementById('searchInput').value.trim().toLowerCase();
-      const allReviews = getReviews();
-
-      const filtered = properties.filter(p => {
-        const hay = `${p.title} ${p.short} ${p.fallback}`.toLowerCase();
-        return !query || hay.includes(query);
-      });
-
-      grid.innerHTML = filtered.map(property => {
-        const reviews = allReviews.filter(r => r.propertyId === property.id);
-        const reviewHtml = reviews.length
-          ? `<div class="review-list">${reviews.map((review, index) => `
-              <div class="review-card">
-                <div class="review-top">
-                  <div>
-                    <div class="review-name">${escapeHtml(review.name || 'Guest')}</div>
-                    <div class="review-date">${escapeHtml(review.date || '')}</div>
-                  </div>
-                  <div class="review-stars">${stars(review.stars)}</div>
-                </div>
-                <p class="review-text">${escapeHtml(review.text || '')}</p>
-                <div style="margin-top:10px; display:flex; justify-content:flex-end;">
-                  <button class="btn light" style="padding:8px 10px; font-size:12px;" onclick="deleteReview('${property.id}', ${index})">Delete</button>
-                </div>
-              </div>
-            `).join('')}</div>`
-          : `<div class="empty-state">No manual reviews added yet for this property.</div>`;
-
-        return `
-          <div class="property-card">
-            <div class="property-head">
-              <h3 class="property-title">${escapeHtml(property.title)}</h3>
-              <div class="property-meta">${escapeHtml(property.short)}</div>
+      <div class="listing-grid">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80" alt="Large Myrtle Beach vacation home" />
+          <div class="card-body">
+            <div class="badge">Large Group Favorite</div>
+            <h3>8 Bedroom Coastal House</h3>
+            <div class="meta">Myrtle Beach • Up to 22 guests • Large family and group stay</div>
+            <p>
+              Built to mirror your current inventory style, this card is for
+              your large-home category. Ideal for family reunions, golf trips,
+              wedding groups, and weekend escapes.
+            </p>
+            <div class="card-actions">
+              <a class="btn" href="#">View Property</a>
+              <a class="btn secondary" href="#">Check Availability</a>
             </div>
-            <div class="embed-wrap">
-              <div class="airbnb-embed-frame" data-id="${property.id}" data-view="home" data-hide-price="true">
-                <a href="${property.link}" rel="nofollow">View On Airbnb</a>
-                <a href="${property.link}" rel="nofollow">${escapeHtml(property.fallback)}</a>
-              </div>
-            </div>
-            <div class="property-actions">
-              <a class="btn" href="${property.link}" target="_blank" rel="nofollow noopener">Open Listing</a>
-            </div>
-            <div style="padding: 0 14px 4px; font-weight:700; font-size:16px;">Guest Reviews</div>
-            ${reviewHtml}
           </div>
-        `;
-      }).join('');
+        </article>
 
-      reloadAirbnbSdk();
-    }
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80" alt="Myrtle Beach duplex rental" />
+          <div class="card-body">
+            <div class="badge">Group Retreat</div>
+            <h3>Full Duplex Getaway</h3>
+            <div class="meta">Grand Strand area • Up to 40 guests • Multi-family setup</div>
+            <p>
+              Your About page highlights full duplex properties for very large
+              groups. This kind of dedicated landing page can target searches
+              bigger platforms often miss.
+            </p>
+            <div class="card-actions">
+              <a class="btn" href="#">View Property</a>
+              <a class="btn secondary" href="#">Check Availability</a>
+            </div>
+          </div>
+        </article>
 
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" alt="Studio apartment in Myrtle Beach" />
+          <div class="card-body">
+            <div class="badge">Couples Retreat</div>
+            <h3>Studio Beach Retreat</h3>
+            <div class="meta">Myrtle Beach • Studio / 1 Bedroom • Perfect for couples</div>
+            <p>
+              This card matches the smaller apartment side of your inventory and
+              gives you a clean way to target studio and 1-bedroom searches on
+              Google.
+            </p>
+            <div class="card-actions">
+              <a class="btn" href="#">View Property</a>
+              <a class="btn secondary" href="#">Check Availability</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-    function reloadAirbnbSdk() {
-      const existing = document.getElementById('airbnb-sdk');
-      if (existing) existing.remove();
-      const script = document.createElement('script');
-      script.id = 'airbnb-sdk';
-      script.async = true;
-      script.src = 'https://www.airbnb.com/embeddable/airbnb_jssdk';
-      document.body.appendChild(script);
-    }
+  <section class="section">
+    <div class="section-inner split">
+      <div class="panel">
+        <h3>Why this structure is better for your site</h3>
+        <p>
+          Your current site already has the right business story, inventory
+          variety, and local positioning. What it needs is stronger page
+          structure: real rental result pages, real property detail pages, and
+          clear category pages for homes, apartments, and large-group stays.
+        </p>
+        <p>
+          This demo keeps your booking engine separate and uses the website to
+          do what Google likes best: crawlable content, search-focused page
+          types, and strong internal linking.
+        </p>
+        <p>
+          You can turn each of your real listings into an SEO page, then build
+          landing pages like “8 Bedroom Myrtle Beach Rentals,” “Studio Myrtle
+          Beach Apartments,” and “Large Group Beach Houses.”
+        </p>
+      </div>
 
-    function addReview() {
-      const propertyId = document.getElementById('propertySelect').value;
-      const name = document.getElementById('guestName').value.trim();
-      const date = document.getElementById('reviewDate').value.trim();
-      const starsValue = document.getElementById('reviewStars').value;
-      const text = document.getElementById('reviewText').value.trim();
+      <div class="panel">
+        <h3>Guest-ready amenities section</h3>
+        <ul class="amenities">
+          <li>Professionally managed homes</li>
+          <li>Myrtle Beach and nearby coastal areas</li>
+          <li>Studio to 8-bedroom options</li>
+          <li>Large group and duplex stays</li>
+          <li>Family vacations and golf trips</li>
+          <li>Wedding and event accommodations</li>
+          <li>Responsive local team</li>
+          <li>Direct booking integration</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-      if (!text) {
-        alert('Please enter review text.');
-        return;
-      }
-
-      const reviews = getReviews();
-      reviews.push({ propertyId, name, date, stars: Number(starsValue), text });
-      setReviews(reviews);
-      clearForm();
-    }
-
-    function clearForm() {
-      document.getElementById('guestName').value = '';
-      document.getElementById('reviewDate').value = '';
-      document.getElementById('reviewStars').value = '5';
-      document.getElementById('reviewText').value = '';
-    }
-
-    function clearPropertyReviews() {
-      const propertyId = document.getElementById('propertySelect').value;
-      const reviews = getReviews().filter(r => r.propertyId !== propertyId);
-      setReviews(reviews);
-    }
-
-    function deleteReview(propertyId, indexInFiltered) {
-      const reviews = getReviews();
-      let seen = -1;
-      const next = reviews.filter(r => {
-        if (r.propertyId === propertyId) {
-          seen += 1;
-          return seen !== indexInFiltered;
-        }
-        return true;
-      });
-      setReviews(next);
-    }
-
-    function renderJson() {
-      document.getElementById('jsonOutput').textContent = JSON.stringify(getReviews(), null, 2);
-    }
-
-    function exportReviews() {
-      const data = JSON.stringify(getReviews(), null, 2);
-      navigator.clipboard.writeText(data).then(() => {
-        alert('Review JSON copied to clipboard.');
-      }).catch(() => {
-        alert(data);
-      });
-    }
-
-    function importReviews() {
-      const raw = document.getElementById('importJson').value.trim();
-      if (!raw) return;
-      try {
-        const parsed = JSON.parse(raw);
-        if (!Array.isArray(parsed)) throw new Error('Invalid JSON');
-        setReviews(parsed);
-        document.getElementById('importJson').value = '';
-      } catch (e) {
-        alert('Invalid JSON format.');
-      }
-    }
-
-    function toggleAdmin() {
-      document.getElementById('adminPanel').classList.toggle('hidden');
-    }
-
-    document.getElementById('searchInput').addEventListener('input', renderProperties);
-
-    populatePropertySelect();
-    renderProperties();
-    renderJson();
-  </script>
+  <footer class="footer">
+    <div class="footer-inner footer-grid">
+      <div>
+        <h4>Ocean Vacations</h4>
+        <p>
+          Exceptional vacation experiences along the Grand Strand with
+          professionally managed homes, apartments, and large-group properties.
+        </p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Search Properties</a></li>
+          <li><a href="#">Houses</a></li>
+          <li><a href="#">Apartments</a></li>
+          <li><a href="#">Property Management</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>
+          Myrtle Beach, SC<br />
+          843-222-6516<br />
+          oceanvacationsmb@gmail.com
+        </p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
