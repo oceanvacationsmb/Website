@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ocean Vacations | Featured Myrtle Beach Rentals</title>
+  <title>Ocean Vacations | Myrtle Beach Vacation Rentals</title>
   <meta
     name="description"
-    content="Browse featured Ocean Vacations rentals in North Myrtle Beach and Murrells Inlet. Large group homes, private pools, inlet views, and direct booking."
+    content="Browse Myrtle Beach vacation rentals with Ocean Vacations. Find beach houses, large group rentals, apartments, and direct booking options across the Grand Strand."
   />
   <style>
     * {
@@ -16,13 +16,13 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f8fafc;
       color: #1f2937;
+      background: #f8fafc;
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
 
     .topbar {
@@ -44,12 +44,12 @@
     .topbar-inner {
       display: flex;
       justify-content: space-between;
-      gap: 12px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
     .nav {
-      background: #ffffff;
+      background: #fff;
       border-bottom: 1px solid #e5e7eb;
       position: sticky;
       top: 0;
@@ -65,8 +65,8 @@
     }
 
     .brand {
-      font-size: 28px;
-      font-weight: 800;
+      font-size: 24px;
+      font-weight: 700;
       color: #0f172a;
     }
 
@@ -75,88 +75,93 @@
       gap: 18px;
       flex-wrap: wrap;
       font-size: 15px;
-      color: #334155;
     }
 
     .hero {
-      background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+      background:
+        linear-gradient(rgba(15, 23, 42, 0.62), rgba(15, 23, 42, 0.62)),
+        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
       color: #fff;
-      padding: 70px 20px 80px;
+      padding: 80px 20px 90px;
     }
 
     .hero-inner h1 {
       margin: 0 0 14px;
-      font-size: 46px;
+      font-size: 48px;
       line-height: 1.05;
-      max-width: 800px;
+      max-width: 760px;
     }
 
     .hero-inner p {
       margin: 0 0 28px;
       max-width: 760px;
-      color: #dbeafe;
       font-size: 18px;
       line-height: 1.6;
+      color: #e5e7eb;
     }
 
     .search-box {
       background: #fff;
+      color: #111827;
       border-radius: 18px;
-      padding: 16px;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr auto;
-      gap: 12px;
-      box-shadow: 0 16px 30px rgba(0,0,0,0.18);
+      padding: 18px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
     }
 
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .field label {
-      font-size: 12px;
+    .search-box-title {
+      font-size: 14px;
       font-weight: 700;
-      color: #64748b;
+      color: #475569;
+      margin-bottom: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
     }
 
-    .field input,
-    .field select {
-      border: 1px solid #d1d5db;
-      border-radius: 12px;
-      padding: 12px 14px;
-      font-size: 15px;
+    .guesty-widget-wrap {
       width: 100%;
+      overflow: hidden;
     }
 
-    .btn {
-      border: none;
-      border-radius: 12px;
-      padding: 14px 18px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    /* helps the embed sit nicely inside the hero */
+    #search-widget_IO312PWQ {
+      width: 100%;
+      min-height: 70px;
     }
 
-    .btn-primary {
-      background: #0f172a;
-      color: #fff;
-    }
-
-    .btn-secondary {
+    .stats {
+      padding: 34px 20px;
       background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .stat-card {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 40px;
+      font-weight: 800;
       color: #0f172a;
-      border: 1px solid #cbd5e1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: #475569;
+      font-size: 15px;
     }
 
     .section {
-      padding: 46px 20px;
+      padding: 44px 20px;
     }
 
     .section h2 {
@@ -165,7 +170,7 @@
       color: #0f172a;
     }
 
-    .section .lead {
+    .section p.lead {
       margin: 0 0 26px;
       max-width: 850px;
       color: #475569;
@@ -173,18 +178,18 @@
       line-height: 1.7;
     }
 
-    .filters {
+    .chips {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
     .chip {
       padding: 10px 14px;
+      border-radius: 999px;
       background: #e2e8f0;
       color: #0f172a;
-      border-radius: 999px;
       font-size: 14px;
       font-weight: 700;
     }
@@ -197,47 +202,17 @@
 
     .card {
       background: #fff;
-      border: 1px solid #e5e7eb;
       border-radius: 20px;
       overflow: hidden;
+      border: 1px solid #e5e7eb;
       box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
     }
 
-    .card-image {
+    .card img {
+      width: 100%;
       height: 230px;
-      display: flex;
-      align-items: flex-end;
-      padding: 18px;
-      color: #fff;
-      font-size: 14px;
-      font-weight: 700;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-    }
-
-    .card-image::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(15,23,42,0.75), rgba(15,23,42,0.15));
-    }
-
-    .card-image span {
-      position: relative;
-      z-index: 1;
-    }
-
-    .bg-one {
-      background-image: linear-gradient(135deg, #1d4ed8, #0f172a);
-    }
-
-    .bg-two {
-      background-image: linear-gradient(135deg, #0f766e, #164e63);
-    }
-
-    .bg-three {
-      background-image: linear-gradient(135deg, #9333ea, #1e293b);
+      object-fit: cover;
+      display: block;
     }
 
     .card-body {
@@ -258,7 +233,6 @@
     .card h3 {
       margin: 0 0 8px;
       font-size: 22px;
-      line-height: 1.25;
       color: #0f172a;
     }
 
@@ -268,27 +242,10 @@
       margin-bottom: 12px;
     }
 
-    .stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    .stat {
-      background: #f1f5f9;
-      border: 1px solid #e2e8f0;
-      border-radius: 999px;
-      padding: 7px 10px;
-      font-size: 13px;
-      color: #334155;
-      font-weight: 700;
-    }
-
     .card p {
       margin: 0 0 18px;
       color: #475569;
-      line-height: 1.65;
+      line-height: 1.6;
       font-size: 15px;
     }
 
@@ -296,6 +253,26 @@
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 12px;
+      background: #0f172a;
+      color: #fff;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
     }
 
     .split {
@@ -323,8 +300,8 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
-      list-style: none;
       padding: 0;
+      list-style: none;
       margin: 0;
     }
 
@@ -369,7 +346,7 @@
     }
 
     @media (max-width: 1080px) {
-      .search-box,
+      .stats-grid,
       .listing-grid,
       .split,
       .footer-grid {
@@ -382,7 +359,7 @@
         font-size: 34px;
       }
 
-      .search-box,
+      .stats-grid,
       .listing-grid,
       .split,
       .footer-grid,
@@ -400,8 +377,8 @@
 <body>
   <div class="topbar">
     <div class="topbar-inner">
-      <div>Myrtle Beach Vacation Rentals</div>
-      <div>843-222-6516 • oceanvacationsmb@gmail.com</div>
+      <div>Myrtle Beach, SC Vacation Rentals</div>
+      <div>Call 843-222-6516 • oceanvacationsmb@gmail.com</div>
     </div>
   </div>
 
@@ -413,6 +390,7 @@
         <a href="#">Rentals</a>
         <a href="#">Houses</a>
         <a href="#">Apartments</a>
+        <a href="#">Property Management</a>
         <a href="#">About</a>
         <a href="#">Contact</a>
       </div>
@@ -421,27 +399,70 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <h1>Large group beach homes and coastal getaways</h1>
+      <h1>Find your dream Myrtle Beach vacation rental</h1>
       <p>
-        Browse featured Ocean Vacations properties in North Myrtle Beach and
-        Murrells Inlet, with private pools, beach access, inlet views, and
-        direct booking.
+        From studio retreats for couples to expansive 8-bedroom homes for large groups,
+        Ocean Vacations offers professionally managed stays across Myrtle Beach and nearby coastal communities.
       </p>
 
       <div class="search-box">
-        <div class="field">
-          <label>Destination or property</label>
-          <input type="text" placeholder="North Myrtle Beach, Murrells Inlet, house name">
+        <div class="search-box-title">Search availability</div>
+        <div class="guesty-widget-wrap">
+          <div id="search-widget_IO312PWQ"></div>
+          <script>
+            !function(e,t,a,n,c,r){
+              function s(t){e.console.log("[Guesty Embedded Widget]:",t)}
+              var i,d,l,o,y,m,g,h,p,u;
+              n&&(i=n,d=t.getElementsByTagName("head")[0],(l=t.createElement("link")).rel="stylesheet",l.type="text/css",l.href=i,l.media="all",d.appendChild(l)),
+              o=function(){
+                try{e[a].create(r).catch(function(e){s(e.message)})}
+                catch(e){s(e.message)}
+              },
+              h=!1,
+              y=c,
+              m=function(){h||this.readyState&&"complete"!=this.readyState||(h=!0,o())},
+              (g=t.createElement("script")).type="text/javascript",
+              g.src=y,
+              g.async="true",
+              g.onload=g.onreadystatechange=m,
+              p=g,
+              (u=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,u)
+            }(
+              window,
+              document,
+              "GuestySearchBarWidget",
+              "https://s3.amazonaws.com/guesty-frontend-production/search-bar-production.css",
+              "https://s3.amazonaws.com/guesty-frontend-production/search-bar-production.js",
+              {
+                "siteUrl":"oceanvacationsmb.guestybookings.com",
+                "color":"#206CFF"
+              }
+            );
+          </script>
         </div>
-        <div class="field">
-          <label>Check-in</label>
-          <input type="date">
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="section-inner">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">36</div>
+          <div class="stat-label">Premium homes for rent</div>
         </div>
-        <div class="field">
-          <label>Check-out</label>
-          <input type="date">
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Different locations</div>
         </div>
-        <button class="btn btn-primary">Search</button>
+        <div class="stat-card">
+          <div class="stat-number">13</div>
+          <div class="stat-label">Years of experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">63</div>
+          <div class="stat-label">Team members</div>
+        </div>
       </div>
     </div>
   </section>
@@ -450,90 +471,63 @@
     <div class="section-inner">
       <h2>Featured properties</h2>
       <p class="lead">
-        This sample page uses your 3 real Guesty property links and turns them into
-        a search-style layout that is much closer to the kind of rental website you want.
+        Explore some of our favorite stays for family vacations, golf trips, wedding groups, and large beach gatherings.
       </p>
 
-      <div class="filters">
-        <span class="chip">Large Group</span>
-        <span class="chip">Private Pool</span>
-        <span class="chip">Ocean / Inlet Views</span>
+      <div class="chips">
+        <span class="chip">Private Pools</span>
+        <span class="chip">Large Group Homes</span>
+        <span class="chip">Ocean View</span>
         <span class="chip">Walk to Beach</span>
+        <span class="chip">Murrells Inlet</span>
+        <span class="chip">North Myrtle Beach</span>
       </div>
 
       <div class="listing-grid">
         <article class="card">
-          <div class="card-image bg-one">
-            <span>North Myrtle Beach</span>
-          </div>
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80" alt="Large Myrtle Beach vacation home" />
           <div class="card-body">
             <div class="badge">Featured Home</div>
             <h3>1004 • 2nd Row Oceanview • Private Pool</h3>
-            <div class="meta">North Myrtle Beach</div>
-            <div class="stats">
-              <span class="stat">Sleeps 18</span>
-              <span class="stat">7 Bedrooms</span>
-              <span class="stat">7 Bathrooms</span>
-              <span class="stat">Private Pool</span>
-            </div>
+            <div class="meta">North Myrtle Beach • Sleeps 18</div>
             <p>
-              Spacious beach home for large groups, set just steps from the beach with
-              ocean views and room to spread out. Great fit for family vacations,
-              reunions, and golf trips.
+              Spacious beach home for large groups with ocean views, room to spread out, and a private pool for memorable coastal stays.
             </p>
             <div class="card-actions">
-              <a class="btn btn-primary" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1a9bc739430011e4594d" target="_blank" rel="noopener">View Property</a>
-              <a class="btn btn-secondary" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1a9bc739430011e4594d" target="_blank" rel="noopener">Book Now</a>
+              <a class="btn" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1a9bc739430011e4594d">View Property</a>
+              <a class="btn secondary" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1a9bc739430011e4594d">Book Now</a>
             </div>
           </div>
         </article>
 
         <article class="card">
-          <div class="card-image bg-two">
-            <span>Murrells Inlet</span>
-          </div>
+          <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80" alt="Murrells Inlet vacation home" />
           <div class="card-body">
             <div class="badge">Inlet Views</div>
             <h3>1463 • Stunning Inlet Views • Pool • Steps to Beach</h3>
-            <div class="meta">Murrells Inlet</div>
-            <div class="stats">
-              <span class="stat">Sleeps 16</span>
-              <span class="stat">5 Bedrooms</span>
-              <span class="stat">6 Bathrooms</span>
-              <span class="stat">Pool</span>
-            </div>
+            <div class="meta">Murrells Inlet • Sleeps 16</div>
             <p>
-              Coastal home with strong group appeal, combining inlet views, beach access,
-              and pool time in one stay. A great option for guests who want scenery and space.
+              Beautiful coastal retreat with pool access, strong group appeal, and quick access to the beach and inlet scenery.
             </p>
             <div class="card-actions">
-              <a class="btn btn-primary" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1a9bdeac7b0020520c32" target="_blank" rel="noopener">View Property</a>
-              <a class="btn btn-secondary" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1a9bdeac7b0020520c32" target="_blank" rel="noopener">Book Now</a>
+              <a class="btn" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1a9bdeac7b0020520c32">View Property</a>
+              <a class="btn secondary" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1a9bdeac7b0020520c32">Book Now</a>
             </div>
           </div>
         </article>
 
         <article class="card">
-          <div class="card-image bg-three">
-            <span>Murrells Inlet</span>
-          </div>
+          <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" alt="Large group beach house" />
           <div class="card-body">
             <div class="badge">Family Favorite</div>
             <h3>1211A • Walk to Beach • Pool + Mini Golf</h3>
-            <div class="meta">Murrells Inlet</div>
-            <div class="stats">
-              <span class="stat">Sleeps 22</span>
-              <span class="stat">7 Bedrooms</span>
-              <span class="stat">11 Beds</span>
-              <span class="stat">7.5 Bathrooms</span>
-            </div>
+            <div class="meta">Murrells Inlet • Sleeps 22</div>
             <p>
-              High-capacity beach house with private pool and mini golf, built for
-              big family stays, celebrations, and memorable coastal weekends close to the sand.
+              High-capacity beach house with private pool and mini golf, built for family trips, celebrations, and large group stays.
             </p>
             <div class="card-actions">
-              <a class="btn btn-primary" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1aadc739430011e4610a" target="_blank" rel="noopener">View Property</a>
-              <a class="btn btn-secondary" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1aadc739430011e4610a" target="_blank" rel="noopener">Book Now</a>
+              <a class="btn" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1aadc739430011e4610a">View Property</a>
+              <a class="btn secondary" href="https://oceanvacationsmb.guestybookings.com/en/properties/68db1aadc739430011e4610a">Book Now</a>
             </div>
           </div>
         </article>
@@ -544,29 +538,29 @@
   <section class="section">
     <div class="section-inner split">
       <div class="panel">
-        <h3>Why this direction is strong</h3>
+        <h3>Why this setup works</h3>
         <p>
-          This layout gives you a real rental-site feel instead of sending everyone
-          straight into the booking engine first. It lets your website sell the stay,
-          then your booking engine closes the booking.
+          Your homepage stays beautiful and professional, while the real search function comes directly from your booking engine.
         </p>
         <p>
-          The next step is to replace the visual placeholders with your real listing photos,
-          then create one SEO page per property using the same structure.
+          This gives you strong branding on your own site, while still using Guesty for search, availability, and booking flow.
+        </p>
+        <p>
+          Next step is to build individual SEO property pages for every home, then link them from the featured cards and rentals page.
         </p>
       </div>
 
       <div class="panel">
-        <h3>Highlights for these 3 homes</h3>
+        <h3>Popular stay types</h3>
         <ul class="amenities">
-          <li>North Myrtle Beach and Murrells Inlet locations</li>
-          <li>Private pool inventory</li>
-          <li>Large group capacity</li>
-          <li>Walk or steps to the beach</li>
-          <li>Ocean or inlet view angle</li>
-          <li>Mini golf feature on 1211A</li>
-          <li>Direct booking links</li>
-          <li>Scalable card layout</li>
+          <li>Large group beach houses</li>
+          <li>Private pool rentals</li>
+          <li>Ocean view stays</li>
+          <li>Murrells Inlet homes</li>
+          <li>North Myrtle Beach houses</li>
+          <li>Family-friendly properties</li>
+          <li>Golf trip accommodations</li>
+          <li>Direct booking options</li>
         </ul>
       </div>
     </div>
@@ -577,23 +571,23 @@
       <div>
         <h4>Ocean Vacations</h4>
         <p>
-          Myrtle Beach area vacation rentals with professionally managed homes,
-          group-friendly stays, and direct booking.
+          Exceptional vacation experiences along the Grand Strand with professionally managed homes, apartments, and large-group properties.
         </p>
       </div>
       <div>
-        <h4>Explore</h4>
+        <h4>Quick Links</h4>
         <ul>
-          <li><a href="#">North Myrtle Beach Rentals</a></li>
-          <li><a href="#">Murrells Inlet Rentals</a></li>
-          <li><a href="#">Large Group Beach Houses</a></li>
-          <li><a href="#">Homes with Private Pools</a></li>
+          <li><a href="#">Search Properties</a></li>
+          <li><a href="#">Houses</a></li>
+          <li><a href="#">Apartments</a></li>
+          <li><a href="#">Property Management</a></li>
         </ul>
       </div>
       <div>
         <h4>Contact</h4>
         <p>
-          843-222-6516<br>
+          Myrtle Beach, SC<br />
+          843-222-6516<br />
           oceanvacationsmb@gmail.com
         </p>
       </div>
